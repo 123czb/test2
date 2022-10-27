@@ -7,5 +7,6 @@ public class TestGit {
     public void test1() {
         System.out.println("This is the forth");
         System.out.println("main");
+        System.out.println("hot-fix");
     }
 }
