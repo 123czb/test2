@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>EMPLOYEES</title>
+    <link rel="stylesheet" th:href="@{/static/css/index_work.css}">
+</head>
+<body>
+<table>
+    <tr>
+        <th colspan="14">员工列表</th>
+    </tr>
+    <tr>
+        <th>序号</th>
+        <th>员工编号</th>
+        <th>员工性</th>
+        <th>员工名</th>
+        <th>员工邮箱</th>
+        <th>员工电话</th>
+        <th>员工生日</th>
+        <th>工作类型</th>
+        <th>月薪</th>
+        <th>年薪</th>
+        <th>上司编号</th>
+        <th>部门编号</th>
+    </tr>
+    <tr th:each="employee,status : ${employees.list}">
+        <td th:text="${status.count}"></td>
+        <td th:text="${employee.employeeId}"></td>
+        <td th:text="${employee.firstName}"></td>
+        <td th:text="${employee.lastName}"></td>
+        <td th:text="${employee.email}"></td>
+        <td th:text="${employee.phoneNumber}"></td>
+        <td th:text="${employee.hireDate}"></td>
+        <td th:text="${employee.jobId}"></td>
+        <td th:text="${employee.salary}"></td>
+        <td th:text="${employee.commissionPct}"></td>
+        <td th:text="${employee.managerId}"></td>
+        <td th:text="${employee.departmentId}"></td>
+        <td>
+            <a href="">修改</a>
+            <a href="">删除</a>
+        </td>
+    </tr>
+</table>
+<div style="text-align: center">
+    <a th:if="${employees.hasPreviousPage}" th:href="@{/employee/page/1}">首页</a>
+    <a th:if="${employees.hasPreviousPage}" th:href="@{'/employee/page/'+${employees.prePage}}">上一页</a>
+    <span th:each="num : ${employees.navigatepageNums}">
+        <a th:if="${num == employees.pageNum}" style="color: red" th:text="'['+${num}+']'"
+           th:href="@{'/employee/page/'+${num}}"></a>
+        <a th:if="${num != employees.pageNum}" th:text="${num}" th:href="@{'/employee/page/'+${num}}"></a>
+    </span>
+    <a th:if="${employees.hasNextPage}" th:href="@{'/employee/page/'+${employees.nextPage}}">下一页</a>
+    <a th:if="${employees.hasNextPage}" th:href="@{'/employee/page/'+${employees.pages}}">末页</a>
+</div>
+</body>
+</html>
