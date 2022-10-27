@@ -6,5 +6,6 @@ public class TestGit {
     @Test
     public void test1() {
         System.out.println("This is the forth");
+        System.out.println("main");
     }
 }
